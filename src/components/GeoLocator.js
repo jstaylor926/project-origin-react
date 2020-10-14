@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class GeoLocator extends React.Component {
   constructor(props) {
@@ -17,14 +17,7 @@ class GeoLocator extends React.Component {
         this.setState({ errorMessage: err.message });
       }
     );
-    }
-    
-    compoundDidMount {
-    window.navigator.geolocation.getCurrentPosition(
-        position => this.setState({ lat: position.coords.latitude }),
-        ett => this.setState({ errorMessage: err.message })
-    );
-}
+  }
 
   // React says we have to define render!!
   render() {
@@ -39,5 +32,3 @@ class GeoLocator extends React.Component {
     return <div>Loading!</div>;
   }
 }
-
-export default GeoLocator;

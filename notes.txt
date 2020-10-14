@@ -1,0 +1,57 @@
+Commonly used Lifecycle Methods
+
+-> render()
+Only required meethod in a class component. When called it should examine this.props and this.state and return one of the following types.
+    => React Elements. Typically created via JSX, <div /> or <MyComp />
+    => Arrays and Fragments. Let you return multiple elements from render.
+    => Portals. Render the children into a different DOM subtree.
+    => String and numbers. Rendered as text nodes in the DOM
+    => Booleans or null. Render nothing.
+Keep render() function pure, does not modify component state. redner() will not be invoked if shouldComponentUpdate() return false.
+
+-> constructor()
+If you don't intialize state and you don't bind methods, you don't need to implement a constructor for your React component. Call super(props) before anyother statement otherwise this.props will be undefined.
+Typically used for two purposes
+    => initializing local state by assigning an object to this.state
+    => Binding event handler methods to an instance.
+You should not call setState() in the constructor(). Instead, if your component needs to use local state, assign the initial state to this.state directly in the constructor:
+
+constructor(props) {
+  super(props);
+  // Don't call this.setState() here!
+  this.state = { counter: 0 };
+  this.handleClick = this.handleClick.bind(this);
+}
+
+-> componentDidMount()
+Invoked immediately after a component is mounted (inserted into the tree).  Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instatiate the netwrok request.
+You may call setState() immediately in componentDidMount(). It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the render() will be called twice in this case, the user won’t see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the constructor() instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+
+-> componentDidUpdate()
+componentDidUpdate(prevProps, prevState, snapshot)
+Invoked immediately after updating occurs. This method is not called for the initial render.
+
+-> componentWillUnmount()
+Invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in componentDidMount().
+
+
+Redux
+
+A pattern and library for managing and updating applicationn state, using events called "actions". Helps manage "global" state - state that is needed across entire application 
+***Redux Toolkit***
+configureStore(): wraps createStore to provide simplified configuration options and good defaults. It can automatically combine your slice reducers, adds whatever Redux middleware you supply, includes redux-thunk by default, and enables use of the Redux DevTools Extension.
+createReducer(): that lets you supply a lookup table of action types to case reducer functions, rather than writing switch statements. In addition, it automatically uses the immer library to let you write simpler immutable updates with normal mutative code, like state.todos[3].completed = true.
+createAction(): generates an action creator function for the given action type string. The function itself has toString() defined, so that it can be used in place of the type constant.
+createSlice(): accepts an object of reducer functions, a slice name, and an initial state value, and automatically generates a slice reducer with corresponding action creators and action types.
+createAsyncThunk: accepts an action type string and a function that returns a promise, and generates a thunk that dispatches pending/fulfilled/rejected action types based on that promise
+createEntityAdapter: generates a set of reusable reducers and selectors to manage normalized data in the store
+The createSelector utility from the Reselect library, re-exported for ease of use.
+
+Using Create React App
+npx create-react-app my-app --template redux
+Existing App
+npm install @reduxjs/toolkit
+yarn add @reduxjs/toolkit
+
+
+
