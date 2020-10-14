@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './components/Header';
-
-
+import { Fragment } from 'react';
+import LandingPage from './pages/LandingPage';
+import GeoLocator from './components/GeoLocator.js';
 ReactDOM.render(
-  <Header />,
+  <Fragment>
+    <LandingPage />
+    <GeoLocator />
+  </Fragment>,
   document.getElementById('root')
 );
