@@ -1,67 +1,171 @@
 import React from 'react';
-
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+// nodejs library that concatenates classes
+import classNames from 'classnames';
+// react component for creating beautiful carousel
+import Carousel from 'react-slick';
+// @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+// @material-ui/icons
+import Share from '@material-ui/icons/Share';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
+// core components
+import Header from 'components/Header/Header.js';
+import Button from 'components/CustomButtons/Button.js';
+import GridContainer from 'components/Grid/GridContainer.js';
+import GridItem from 'components/Grid/GridItem.js';
+import Card from 'components/Card/Card.js';
+import CardBody from 'components/Card/CardBody.js';
+import CustomInput from 'components/CustomInput/CustomInput.js';
 
+import headersStyle from '../assets/jss/headersStyle.js';
 
-import CssBaseline from '@material-ui/core/CssBaseline';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Slide from '@material-ui/core/Slide';
+import bg12 from 'assets/img/bg12.jpg';
+import office2 from 'assets/img/examples/office2.jpg';
+import dg1 from 'assets/img/dg1.jpg';
+import dg2 from 'assets/img/dg2.jpg';
+import dg3 from 'assets/img/dg3.jpg';
 
+const useStyles = makeStyles(headersStyle);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  toolbar: {
-    minHeight: 128,
-    alignItems: 'flex-start',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    alignSelf: 'flex-end',
-  },
-}));
-
-export default function ProminentAppBar() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h5" noWrap>
-            Material-UI
-          </Typography>
-          <IconButton aria-label="search" color="inherit">
-            <SearchIcon />
-          </IconButton>
-          <IconButton aria-label="display more actions" edge="end" color="inherit">
-            <MoreIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+export default function SectionHeaders({ ...rest }) {
+	const classes = useStyles();
+	const settings = {
+		dots: true,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		autoplay: false,
+	};
+	return (
+		// we've set the className to cd-section so we can make smooth scroll to it
+		<div className="cd-section" {...rest}>
+			<div className={classes.sectionBlank} id="blanksection" />
+			{/* HEADER 1 START */}
+			<div>
+				<Header
+					absolute
+					brand="Creative Tim"
+					color="transparent"
+					links={
+						<div className={classes.collapse}>
+							<List className={classes.list + ' ' + classes.mlAuto}>
+								<ListItem className={classes.listItem}>
+									<Button
+										href="#pablo"
+										className={classes.navLink}
+										onClick={(e) => e.preventDefault()}
+										color="transparent"
+									>
+										Home
+									</Button>
+								</ListItem>
+								<ListItem className={classes.listItem}>
+									<Button
+										href="#pablo"
+										className={classes.navLink}
+										onClick={(e) => e.preventDefault()}
+										color="transparent"
+									>
+										About us
+									</Button>
+								</ListItem>
+								<ListItem className={classes.listItem}>
+									<Button
+										href="#pablo"
+										className={classes.navLink}
+										onClick={(e) => e.preventDefault()}
+										color="transparent"
+									>
+										Products
+									</Button>
+								</ListItem>
+								<ListItem className={classes.listItem}>
+									<Button
+										href="#pablo"
+										className={classes.navLink}
+										onClick={(e) => e.preventDefault()}
+										color="transparent"
+									>
+										Contact us
+									</Button>
+								</ListItem>
+							</List>
+							<List className={classes.list + ' ' + classes.mlAuto}>
+								<ListItem className={classes.listItem}>
+									<Button
+										color="transparent"
+										href="https://twitter.com/CreativeTim?ref=creativetim"
+										target="_blank"
+										className={classes.navLink + ' ' + classes.navLinkJustIcon}
+									>
+										<i className={'fab fa-twitter'} />
+									</Button>
+								</ListItem>
+								<ListItem className={classes.listItem}>
+									<Button
+										color="transparent"
+										href="https://www.facebook.com/CreativeTim?ref=creativetim"
+										target="_blank"
+										className={classes.navLink + ' ' + classes.navLinkJustIcon}
+									>
+										<i className={'fab fa-facebook'} />
+									</Button>
+								</ListItem>
+								<ListItem className={classes.listItem}>
+									<Button
+										color="transparent"
+										href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
+										target="_blank"
+										className={classes.navLink + ' ' + classes.navLinkJustIcon}
+									>
+										<i className={'fab fa-instagram'} />
+									</Button>
+								</ListItem>
+							</List>
+						</div>
+					}
+				/>
+				<div className={classes.pageHeader} style={{ backgroundImage: `url("${bg12}")` }}>
+					<div className={classes.container}>
+						<GridContainer>
+							<GridItem xs={12} sm={6} md={6}>
+								<h1 className={classes.title}>Tesla Model 3.</h1>
+								<h4>
+									There{"'"}s no doubt that Tesla is delighted with the interest, but the data also
+									raises a few questions. How long will it take for Tesla to fulfill all those extra
+									orders?
+								</h4>
+								<br />
+								<Button
+									color="danger"
+									size="lg"
+									href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
+									target="_blank"
+									rel=""
+								>
+									<i className="fas fa-ticket-alt" />
+									Order Now
+								</Button>
+							</GridItem>
+							<GridItem xs={12} sm={5} md={5} className={classes.mlAuto}>
+								<div className={classes.iframeContainer}>
+									<iframe
+										height="250"
+										src="https://www.youtube.com/embed/IN6QnLpVEPI?ref=creativetim"
+										frameBorder="0"
+										allow="encrypted-media"
+										allowFullScreen=""
+										title="Tesla"
+									/>
+								</div>
+							</GridItem>
+						</GridContainer>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }

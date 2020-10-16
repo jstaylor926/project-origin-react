@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Fragment } from 'react';
-import LandingPage from './pages/LandingPage';
-import GeoLocator from './components/GeoLocator.js';
+
+import Game from './pages/Game';
 ReactDOM.render(
-  <Fragment>
-    <LandingPage />
-    <GeoLocator />
-  </Fragment>,
-  document.getElementById('root')
+	<Fragment>
+		<Game />
+	</Fragment>,
+	document.getElementById('root')
 );

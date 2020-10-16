@@ -1,10 +1,9 @@
-import React from 'react'
-import Navbar from '../components/Navbar';
+import React from 'react';
 
-
-function LandingPage() {
-    return (
-        <Navbar />
-    );
+class LandingPage extends React.Component {
+	render() {
+		return <div className="container"></div>;
+	}
 }
+
 export default LandingPage;
